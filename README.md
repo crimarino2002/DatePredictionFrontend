@@ -1,59 +1,75 @@
-# DatePrediction
+# SalesDatePrediction
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+Descripción
+Microservicio backend en .NET 8 para predicción de órdenes y gestión de ordenes, conectado a base de datos SQL Server mediante procedimientos almacenados. Incluye documentación Postman y frontend Angular. Ver documentacion y casos de uso en postman.
+https://documenter.getpostman.com/view/44292827/2sB2j6AB81
 
-## Development server
+* Tecnologías utilizadas
+  * .NET 8
+  * SQL Server (lógica implementada mediante procedimientos almacenados)
+  * Entity Framework Core
+  * Swashbuckle (Swagger)
 
-To start a local development server, run:
+* Estructura del proyecto
+  * Controllers: expone los endpoints REST
+    * GET /Customers/GetAll
+    * GET /Orders/GetOrdersBy/{customerId}
+    * POST /Orders/Create
+    * GET /Product/GetAll
+    * GET /Employees/GetAll
+    * GET /Shippers/GetAll
 
-```bash
-ng serve
-```
+* Services: lógica de escritura y lectura del negocio que consume SPs
+  * ReadService
+  * WriteService
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* Entites: definición de DTO´s
+  * Customer
+  * Employee
+  * Order
+  * Product
+  * Shipper
 
-## Code scaffolding
+* Models: modelos genericos de conexión
+  * DtoBase
+  * Order
+  * ApiResponse
+  * PagedResponse
+  + ResponseMetadata
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* DbContext: configuración de conexión a la base de datos
 
-```bash
-ng generate component component-name
-```
+* Requisitos previos
+  * .NET SDK 8 instalado
+  * SQL Server en ejecución con base de datos StoreSample
+  * Node.js y Angular CLI (para el frontend)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+* Configuración y ejecución local Backend
+  * git clone https://github.com/crimarino2002/DatePredictionBackend.git
+  * Configura la cadena de conexión en appsettings.json: ConnectionStrings.SqlServer
+  * Ejecuta el backend:
+    * dotnet run
+    * dotnet run --project ./DatePredictionBackend/DatePredictionBackend.csproj
+  * Abre Swagger:
+    * http://localhost:5027/swagg
 
-```bash
-ng generate --help
-```
+* Frontend (Angular)
+  * git clone https://github.com/crimarino2002/DatePredictionFrontend.git
+  * Entra a la carpeta del frontend:
+  * cd DatePredictionFrontend
+  * ng serve
+    * http://localhost:4200
 
-## Building
+* D3
+  * https://codepen.io/crimarino2002/pen/xbbjQNQ
 
-To build the project run:
+Notas
+* Todos los procesos de predicción y consulta avanzada están encapsulados en procedimientos almacenados en SQL Server.
+* La API está lista para ser conectada a microservicios adicionales si es necesario escalar el sistema.
+* La colección tiene adjuntas las variables modificables para la utlización de los servicios.
+* Los SPs puedes descargarlos en este repositorio. https://github.com/crimarino2002/SPs
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  
+Autor
+* Nombre: Cristhian Mariño
+* LinkedIn: https://www.linkedin.com/in/cristhian-almg/
