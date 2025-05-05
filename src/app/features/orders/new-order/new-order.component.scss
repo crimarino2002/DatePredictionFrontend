@@ -1,0 +1,21 @@
+.modal-card {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-field {
+  flex: 1 1 45%;
+  min-width: 200px;
+}
